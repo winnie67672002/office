@@ -1,0 +1,8 @@
+<input #autoInput nbInput type="text" (input)="onAutocompleteChange()" placeholder="標籤名稱" [nbAutocomplete]="auto"
+  [(ngModel)]="tagValue" />
+
+<nb-autocomplete #auto (selectedChange)="onAutocompleteSelectionChange($event)">
+  <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+    {{ option }}
+  </nb-option>
+</nb-autocomplete>

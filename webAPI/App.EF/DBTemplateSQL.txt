@@ -1,0 +1,645 @@
+﻿-- tblBusinessUnit definition
+
+-- Drop table
+
+-- DROP TABLE tblBusinessUnit;
+
+CREATE TABLE tblBusinessUnit (
+	cID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	cBUCode nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cName nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cDescription nvarchar(200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cCreateDT datetime NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cStatus int NULL,
+	cRemark nvarchar(500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUserLimit int NULL,
+	cPlatformIsSupport bit NULL,
+	cType int NULL,
+	CONSTRAINT PK_tblBusinessUnit PRIMARY KEY (cID)
+);
+
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'BUID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'BU代碼' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cBUCode'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'BU名稱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'說明' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cDescription'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'狀態' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cStatus'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'備註' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cRemark'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者上限' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cUserLimit'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否支援' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cPlatformIsSupport'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'1 平台 2 商戶' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit', @level2type=N'COLUMN',@level2name=N'cType'
+GO
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'企業主檔' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblBusinessUnit'
+GO
+
+
+
+-- tblFunction definition
+
+-- Drop table
+
+-- DROP TABLE tblFunction;
+
+CREATE TABLE tblFunction (
+	cID int NOT NULL,
+	cName nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cParentID int NULL,
+	cPageUrl nvarchar(200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cIsMenu bit NULL,
+	cMenuIndex int NULL,
+	cCssStyle nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cStatus int NULL,
+	cIsDelete bit NULL,
+	cCompetenceType tinyint NULL,
+	cCreateDT datetime NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cFlowID int NOT NULL,
+	CONSTRAINT PK_tblFunction PRIMARY KEY (cID)
+);
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'模組編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'模組名稱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'父模組編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cParentID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'功能頁面' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cPageUrl'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否為後台目錄(0:否, 1:是)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cIsMenu'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'前台及後台目錄索引值(排序由小到大)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cMenuIndex'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'後台CSS樣式名稱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cCssStyle'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'狀態(0:停用, 1:啟用)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cStatus'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'緩刪除(0:未刪除, 1:已刪除)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cIsDelete'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'(0:是單元, 1:新增, 2:修改, 3:檢視, 4:刪除, 5:審核)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cCompetenceType'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cCreateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cCreator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'修改日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cUpdateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'修改者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cUpdator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'審查流程ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction', @level2type=N'COLUMN',@level2name=N'cFlowID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'單元(已審核)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunction'
+GO
+
+
+
+-- tblFunctionOnGroup definition
+
+-- Drop table
+
+-- DROP TABLE tblFunctionOnGroup;
+
+CREATE TABLE tblFunctionOnGroup (
+	cUserGroupID int NOT NULL,
+	cFunctionID int NOT NULL,
+	CONSTRAINT PK_tblFunctionOnRole PRIMARY KEY (cUserGroupID,cFunctionID)
+);
+
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者群組編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunctionOnGroup', @level2type=N'COLUMN',@level2name=N'cUserGroupID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'功能編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunctionOnGroup', @level2type=N'COLUMN',@level2name=N'cFunctionID'
+GO
+
+
+
+
+-- tblUser definition
+
+-- Drop table
+
+-- DROP TABLE tblUser;
+
+CREATE TABLE tblUser (
+	cUserID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	cUserName nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cAccount nvarchar(100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cPassword nvarchar(MAX) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cMail nvarchar(254) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cIsDeptManager bit NULL,
+	cIsDelete bit NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cCreateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cStatus int NULL,
+	cAgentUnit varchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cBUID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	CONSTRAINT PK_tblUser PRIMARY KEY (cUserID)
+);
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者編號編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cUserID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者名稱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cUserName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'cAccount、cAccount2都不可重複' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cAccount'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'密碼' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cPassword'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'信箱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cMail'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否為單位最高權限(0:否, 1:是)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cIsDeptManager'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'緩刪除(0:未刪除, 1:已刪除)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cIsDelete'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cCreator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cCreateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cUpdator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cUpdateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'狀態 0:停用 1:啟用' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cStatus'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'代理單位' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cAgentUnit'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'BU' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser', @level2type=N'COLUMN',@level2name=N'cBUID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUser'
+GO
+
+
+
+-- tblUserGroup definition
+
+-- Drop table
+
+-- DROP TABLE tblUserGroup;
+
+CREATE TABLE tblUserGroup (
+	cID int IDENTITY(1,1) NOT NULL,
+	cName nvarchar(100) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cStatus int NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cCreateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cBUID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	CONSTRAINT PK_tblUserGroup PRIMARY KEY (cID)
+);
+
+
+-- tblUserOnGroup definition
+
+-- Drop table
+
+-- DROP TABLE tblUserOnGroup;
+
+CREATE TABLE tblUserOnGroup (
+	cUserID nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	cUserGroupID int NOT NULL,
+	cStatus bit NULL,
+	CONSTRAINT PK_tblUserOnGroup PRIMARY KEY (cUserID,cUserGroupID)
+);
+
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者群組編號' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'群組名稱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'狀態(0:停用, 1:啟用)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cStatus'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cCreator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cCreateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新者' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cUpdator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新日期時間' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup', @level2type=N'COLUMN',@level2name=N'cUpdateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'使用者群組' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblUserGroup'
+GO
+
+
+
+-- tblFunctionOnBU definition
+
+-- Drop table
+
+-- DROP TABLE tblFunctionOnBU;
+
+CREATE TABLE tblFunctionOnBU (
+	cBUID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NOT NULL,
+	cFunctionID int NOT NULL,
+	cStatus int NULL,
+	CONSTRAINT PK_tblFunctionOnBU PRIMARY KEY (cBUID,cFunctionID)
+);
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'模組功能管理(對應企業)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblFunctionOnBU'
+GO
+
+
+
+-- tblAccessLog definition
+
+-- Drop table
+
+-- DROP TABLE tblAccessLog;
+
+CREATE TABLE tblAccessLog (
+	cID int IDENTITY(1,1) NOT NULL,
+	cUserID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cFunctionID int NULL,
+	cActionName nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cAPIName nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cRequest nvarchar(MAX) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUrl nvarchar(200) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cRemark nvarchar(500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cIP nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cCreateDT datetime NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	CONSTRAINT PK_tblAccessLog PRIMARY KEY (cID)
+);
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":1,
+  "type":"dropdownlist",
+  "options":[{"text":"功能1","value":"1"},{"text":"功能2","value":"2"},{"text":"功能3","value":"3"}],
+  "columnDesc":"功能"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cFunctionID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":1,
+  "isRequire":1,
+  "columnDesc":"動作名稱"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cActionName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'API' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cAPIName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'請求參數' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cRequest'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'URL' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cUrl'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'備註' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cRemark'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'IP' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cIP'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cCreateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立者Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cCreator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cUpdateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新者Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblAccessLog', @level2type=N'COLUMN',@level2name=N'cUpdator'
+GO
+
+
+-- tblLoginLog definition
+
+-- Drop table
+
+-- DROP TABLE tblLoginLog;
+
+CREATE TABLE tblLoginLog (
+	cID int IDENTITY(1,1) NOT NULL,
+	cUserID nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUserToken nvarchar(500) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cIP nvarchar(50) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cCreateDT datetime NULL,
+	cCreator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	cUpdateDT datetime NULL,
+	cUpdator nvarchar(20) COLLATE Chinese_Taiwan_Stroke_CI_AS NULL,
+	CONSTRAINT PK_tblLoginHistory PRIMARY KEY (cID)
+);
+
+
+
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblLoginLog', @level2type=N'COLUMN',@level2name=N'cCreateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'建立者Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblLoginLog', @level2type=N'COLUMN',@level2name=N'cCreator'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblLoginLog', @level2type=N'COLUMN',@level2name=N'cUpdateDT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'更新者Id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblLoginLog', @level2type=N'COLUMN',@level2name=N'cUpdator'
+GO
+
+
+
+
+
+
+
+
+
+-- 預設資料 ----------------------------------
+
+
+-- 建立平台端BU
+INSERT INTO tblBusinessUnit
+(cID, cBUCode, cName, cDescription, cCreateDT, cCreator, cUpdateDT, cUpdator, cStatus, cRemark, cUserLimit, cPlatformIsSupport, cType)
+VALUES(N'0', N'BU0000000000', N'平台端', N'管理員', '2021-04-07 01:27:40.320', N'1', '2021-04-07 01:27:40.320', N'1', 1, N'管理員', 9999, 1, 1);
+
+
+--預設功能
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(1, N'系統登入', 0, N'/login', 0, 0, N'', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(2, N'系統登出', 0, N'/logout', 0, 0, N'', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(3, N'系統管理', 0, N'#', 1, 3, N'settings-2-outline', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(4, N'使用者管理', 3, N'/pages/user-management', 1, 1, N'', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(5, N'角色權限管理', 3, N'/pages/role-permissions', 1, 3, N'', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(6, N'操作紀錄查詢', 3, N'/pages/logs-management', 1, 4, N'', 1, 0, 0, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(7, N'使用者管理[檢視]', 4, N'#', 0, 0, N'', 1, 0, 1, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(8, N'使用者管理[新增]', 4, N'#', 0, 0, N'', 1, 0, 2, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(9, N'使用者管理[修改]', 4, N'#', 0, 0, N'', 1, 0, 3, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(10, N'使用者管理[刪除]', 4, N'#', 0, 0, N'', 1, 0, 4, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(11, N'角色權限管理[檢視]', 5, N'#', 0, 0, N'', 1, 0, 1, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(12, N'角色權限管理[新增]', 5, N'#', 0, 0, N'', 1, 0, 2, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(13, N'角色權限管理[修改]', 5, N'#', 0, 0, N'', 1, 0, 3, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(14, N'角色權限管理[刪除]', 5, N'#', 0, 0, N'', 1, 0, 4, NULL, NULL, NULL, NULL, 0);
+INSERT INTO tblFunction
+(cID, cName, cParentID, cPageUrl, cIsMenu, cMenuIndex, cCssStyle, cStatus, cIsDelete, cCompetenceType, cCreateDT, cCreator, cUpdateDT, cUpdator, cFlowID)
+VALUES(15, N'操作紀錄查詢[檢視]', 6, N'#', 0, 0, N'', 1, 0, 1, NULL, NULL, NULL, NULL, 0);
+
+
+--功能與BU對應
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 3, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 4, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 5, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 6, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 7, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 8, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 9, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 10, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 11, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 12, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 13, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 14, 1);
+INSERT INTO tblFunctionOnBU
+(cBUID, cFunctionID, cStatus)
+VALUES(N'0', 15, 1);
+
+
+--腳色群組
+INSERT INTO tblUserGroup
+( cName, cStatus, cCreator, cCreateDT, cUpdator, cUpdateDT, cBUID)
+VALUES( N'平台管理員', 1, NULL, NULL, NULL, NULL, N'0');
+
+--腳色與功能對應
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 3);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 4);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 5);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 6);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 7);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 8);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 9);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 10);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 11);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 12);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 13);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 14);
+INSERT INTO tblFunctionOnGroup
+(cUserGroupID, cFunctionID)
+VALUES(1, 15);
+
+
+
+--使用者
+INSERT INTO tblUser
+(cUserID, cUserName, cAccount, cPassword, cMail, cIsDeptManager, cIsDelete, cCreator, cCreateDT, cUpdator, cUpdateDT, cStatus, cAgentUnit, cBUID)
+VALUES(N'0', N'System', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO tblUser
+(cUserID, cUserName, cAccount, cPassword, cMail, cIsDeptManager, cIsDelete, cCreator, cCreateDT, cUpdator, cUpdateDT, cStatus, cAgentUnit, cBUID)
+VALUES(N'1', N'Admin', N'admin', N'8D2181559A4910C0EF0B395E81C2BEDD', NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-07 02:52:22.647', 1, NULL, N'0');
+
+
+--使用者群組對應
+INSERT INTO tblUserOnGroup
+(cUserID, cUserGroupID, cStatus)
+VALUES(N'1', 1, 1);
+
+
+
+
+-- SMAPLE
+
+GO
+
+/****** Object:  Table [dbo].[tblSample]    Script Date: 2021/4/15 下午 04:41:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tblSample](
+ [cId] [int] NOT NULL,
+ [cTitle] [nvarchar](50) NULL,
+ [cDescription] [nvarchar](500) NULL,
+ [cType] [nvarchar](10) NOT NULL,
+ [cStartDate] [datetime] NOT NULL,
+ [cQueryBox] [nvarchar](100) NULL,
+ [cType2] [nvarchar](100) NULL,
+ CONSTRAINT [PK_tblTemplate] PRIMARY KEY CLUSTERED 
+(
+ [cId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Key' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cId'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文字框範例' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cTitle'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":0,
+  "isRequire":1,
+  "columnDesc":"必填範例"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cDescription'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":1,
+  "isRequire":1,
+  "type":"dropdownlist",
+  "options":[{"text":"功能1","value":"T1"},{"text":"功能2","value":"T2"},{"text":"功能3","value":"T3"}],
+  "columnDesc":"下拉範例"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cType'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'日期範例' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cStartDate'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":1,
+  "columnDesc":"查詢範例"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cQueryBox'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{
+  "isquery":0,
+  "isRequire":1,
+  "type":"dropdownlist",
+  "options":[{"text":"B功能1","value":"T1"},{"text":"B功能2","value":"T2"},{"text":"B功能3","value":"T3"}],
+  "columnDesc":"下拉範例2"
+}' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tblSample', @level2type=N'COLUMN',@level2name=N'cType2'
+GO

@@ -1,0 +1,105 @@
+﻿<nb-card accent="success">
+  <nb-card-header>
+    <ngx-breadcrumb></ngx-breadcrumb>
+  </nb-card-header>
+
+
+  <nb-card style="height: 100%; overflow: auto; max-width: 800px; " class="mr-md-5 ml-md-5">
+    <nb-card-header>
+      <span *ngIf="isNew===true">新增</span>
+      <span *ngIf="isNew===false">編輯</span>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="row  p-2">
+        <div class="col-12 col-md-12" >
+
+          <div class="row">
+            <div class="form-group row col-md-6">
+              <div class="form-group row col-md-12">
+                <label for="cId" class=" col-md-4 col-form-label">申請人</label>
+                <div class="col-md-8">
+                  {{userName}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group row col-md-6">
+              <div class="form-group row col-md-12">
+                <label for="cId" class=" col-md-4 col-form-label">申請時間</label>
+                <div class="col-md-8">
+                  {{nowTime | date}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row col-md-6">
+              <div class="form-group row col-md-12">
+                <label for="cId" class=" col-md-4 col-form-label">申請單位</label>
+                <div class="col-md-8">
+                  <input type="text" nbInput id="cApplyDept" name="cApplyDept" placeholder="請輸入申請單位"
+                  [(ngModel)]="apply.cApplyDept" nbTooltipTrigger="focus" nbTooltip="請輸入cApplyDept"
+                  nbTooltipPlacement="right">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row col-md-6">
+              <div class="form-group row col-md-12">
+                <label for="cId" class=" col-md-4 col-form-label">成本中心</label>
+                <div class="col-md-8">
+                 <input type="text" nbInput id="cCostingNo" name="cCostingNo" placeholder="請輸入成本中心"
+                  [(ngModel)]="apply.cCostingNo" nbTooltipTrigger="focus" nbTooltip="請輸入cCostingNo"
+                  nbTooltipPlacement="right">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="height: 1px; border: none; background-color: #2828284b">
+
+          <div class="row">
+            <div class="form-group row col-md-12">
+              <div class="form-group row col-md-6">
+                <label for="cGoodsName" class=" col-md-4 col-form-label">申請項目</label>
+                <select class=" col-md-4">
+                  <option>請選擇</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row col-md-12">
+              <div class="form-group row col-md-6" >
+                <label for="cCount" class=" col-md-4 col-form-label">申請數量</label>
+                <select class=" col-md-4">
+                  <option >請選擇</option>
+                </select>
+                <button type="button" class="btn-check col-md-4">加入</button>
+              </div>
+            </div>
+
+            <div class="form-group row col-md-12">
+              <div class="form-group row col-md-6" >
+                <label for="cFile" class=" col-md-4 col-form-label">附件上傳</label>
+                <input type="file" class=" col-md-8">
+              </div>
+            </div>
+
+            <div class="form-group row col-md-12">
+              <label for="cRemark" class=" col-md-2 col-form-label">申請說明</label>
+              <textarea class=" col-md-10"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-success mr-2" (click)="save()">確定</button>
+          <button class="btn btn-danger mr-2" (click)="add()">取消</button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+
+</nb-card>

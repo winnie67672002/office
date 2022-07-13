@@ -1,0 +1,128 @@
+<nb-card accent="success">
+  <nb-card-header>
+    <ngx-breadcrumb></ngx-breadcrumb>
+  </nb-card-header>
+
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+      <div class="row">
+        <div class="form-group col-12 col-md-4">
+          <label for="keyWord" class="label mr-2">搜尋</label>
+          <input type="text" nbInput id="l1" placeholder="請輸入角色權限名稱" name="Name" [ngModel]="request.CName">
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <label for="status" class="label mr-2">狀態</label>
+          <nb-select [(selected)]="request.CStatus">
+            <nb-option [value]="-1">全部</nb-option>
+            <nb-option [value]="1">啟用</nb-option>
+            <nb-option [value]="0">停用</nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group col-12 col-md-5 text-right">
+          <button class="btn btn-info mr-2" (click)="getList()"><i class="fas fa-search mr-1"></i>查詢</button>
+          <button class="btn btn-success mr-2" (click)="add(dialog)" *ngIf="isCreate"><i
+              class="fas fa-plus mr-1"></i>新增角色權限</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped border " style="min-width: 800px; background-color:#f3f3f3;">
+          <thead>
+            <tr style="background-color: #27ae60;" class="d-flex text-white">
+              <th scope="col" class="col-1">ID</th>
+              <th scope="col" class="col-5">角色權限名稱</th>
+              <th scope="col" class="col-1">狀態</th>
+              <th scope="col" class="col-3">異動時間</th>
+              <th scope="col" class="col-2">操作功能</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of userGroups" class="d-flex">
+              <td class="col-1">{{ data.CId }}</td>
+              <td class="col-5">{{ data.CName }}</td>
+              <td class="col-1">{{ data.CStatus | getStatusName }}</td>
+              <td class="col-3">{{ data.CUpdateDt | localDate: 'yyyy-MM-DD HH:mm:ss' }}</td>
+              <td class="col-2">
+                <button *ngIf="isUpdate" type="button" class="btn btn-outline-success m-1  btn-sm"
+                  (click)="onEdit(data,dialog)"><i class="fas fa-edit mr-1"></i>編輯</button>
+                <button *ngIf="isDelete" type="button" class="btn btn-outline-danger m-1  btn-sm"
+                  (click)="onDelete(data)"><i class="far fa-trash-alt mr-1"></i>刪除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ngx-pagination [(CollectionSize)]="totalRecords" [(Page)]="pageIndex" [(PageSize)]="pageSize"
+        (PageChange)="getList()">
+      </ngx-pagination>
+
+    </div>
+
+  </nb-card-body>
+</nb-card>
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="height: 100%; overflow: auto; max-width: 800px; " class="mr-md-5 ml-md-5">
+    <nb-card-header>
+      <span *ngIf="isNew===true">新增角色權限</span>
+      <span *ngIf="isNew===false">編輯角色權限</span>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="row  p-2">
+        <div class="col-12 col-md-12">
+
+          <div class="row ">
+            <div class="form-group row col-12">
+              <label class="col-md-4 col-form-label">角色名稱</label>
+              <div class="col-md-8">
+                <input type="text" nbInput id="l1" placeholder="請輸入角色權限名稱" name="Name"
+                  [(ngModel)]="userGroupFunction.CName">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 " *ngFor="let v1 of userGroupFunction.FunctionLv1">
+              <div class="row border" *ngIf="v1.FunctionLv2.length>0">
+                <div class="col-12 p-2 border">
+                  <nb-icon icon="arrow-right-outline" status="basic"></nb-icon>{{v1.CName}}
+                </div>
+                <div class="col-12" *ngFor="let v2 of v1.FunctionLv2">
+                  <div class="row pl-4 pt-3" *ngIf="v2.Authority.length>0">
+                    <div class=" col-md-3">{{v2.CName}}</div>
+                    <div class=" col-md-8">
+                      <label *ngFor="let auth of v2.Authority" class="mr-2">
+                        <nb-checkbox status="basic" [(checked)]="auth.IsChecked">{{auth.CName}}
+                        </nb-checkbox>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-success mr-2" (click)="save(ref)">確定</button>
+          <button class="btn btn-danger mr-2" (click)="ref.close()">取消</button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

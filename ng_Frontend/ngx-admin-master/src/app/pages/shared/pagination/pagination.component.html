@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center p-2" *ngIf="CollectionSize>0">
+  <ngb-pagination [(collectionSize)]="CollectionSize" [(page)]="Page" [(pageSize)]="PageSize"
+    (pageChange)="pageChange()" [maxSize]="5" [boundaryLinks]="true">
+  </ngb-pagination>
+
+</div>
+<div class="text-center" *ngIf="CollectionSize>0">
+  TotalRecords：{{CollectionSize}}
+</div>
+
+<p class="text-center text-danger fw-bold" *ngIf="CollectionSize===0">無任何資料.</p>

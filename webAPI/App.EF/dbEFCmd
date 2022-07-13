@@ -1,0 +1,5 @@
+//�Ĥ@���ݥ��w��SDK
+dotnet tool install --global dotnet-ef
+
+dotnet ef dbcontext scaffold "Server=LAPTOP-O61HUUI5\SQLEXPRESS;Database=dbofficeApi;Trusted_Connection=False;user id=sa;password=123;" Microsoft.EntityFrameworkCore.SqlServer --output-dir EF/dbofficeApi -f -v
+

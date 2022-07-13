@@ -1,0 +1,161 @@
+﻿<nb-card accent="success">
+  <nb-card-header>
+    <ngx-breadcrumb></ngx-breadcrumb>
+  </nb-card-header>
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+      <div class="row">
+         <div class="form-group col-12 col-md-4">
+    <label for="cQueryBox" class="label mr-2">查詢範例</label>
+    <input type="text" nbInput id="cQueryBox" name="cQueryBox" placeholder="查詢範例" [(ngModel)]="sampleGetListArg.cQueryBox">
+  </div><div class="form-group col-12 col-md-3">
+  <label for="cType" class="label mr-2">下拉範例</label>
+  <nb-select placeholder="請選擇" [(selected)]="sampleGetListArg.cType">
+    <nb-option [value]="'T1'">功能1</nb-option>
+<nb-option [value]="'T2'">功能2</nb-option>
+<nb-option [value]="'T3'">功能3</nb-option>
+    <!-- <nb-option [value]="-1">全部</nb-option> -->
+  </nb-select>
+</div>
+        <div class="form-group col-12 col-md-5 text-right">
+          <button class="btn btn-info mr-2" (click)="getList()"><i class="fas fa-search mr-1"></i>查詢</button>
+          <button class="btn btn-success mr-2" (click)="add(dialog)" ><i
+              class="fas fa-plus mr-1"></i>新增</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped border " style="min-width: 800px; background-color:#f3f3f3;">
+          <thead>
+              <tr style="background-color: #27ae60;" class="d-flex text-white">
+                  <th scope="col" class="col-1">Key</th>
+<th scope="col" class="col-1">文字框範例</th>
+<th scope="col" class="col-1">必填範例</th>
+<th scope="col" class="col-1">下拉範例</th>
+<th scope="col" class="col-1">日期範例</th>
+<th scope="col" class="col-1">查詢範例</th>
+<th scope="col" class="col-1">下拉範例2</th>
+                  <!-- <th scope="col" class="col-1">序號</th> -->
+                  <th scope="col" class="col-2"></th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of SampleList" class="d-flex">
+              <td class="col-1">{{ data.cId }}</td>
+<td class="col-1">{{ data.cTitle }}</td>
+<td class="col-1">{{ data.cDescription }}</td>
+<td class="col-1">{{ mapcTypeOptions(data.cType) }}</td>
+<td class="col-1">{{ data.cStartDate | localDate: 'yyyy-MM-DD HH:mm:ss' }}</td>
+<td class="col-1">{{ data.cQueryBox }}</td>
+<td class="col-1">{{ mapcType2Options(data.cType2) }}</td>
+              <!-- <td class="col-1">{{ data.CUserId }}</td>
+              <td class="col-1">{{ data.CStatus | getStatusName }}</td> -->
+              <td class="col-2">
+                <button  type="button" class="btn btn-outline-success m-1  btn-sm"
+                  (click)="onEdit(data,dialog)"><i class="fas fa-edit mr-1"></i>編輯</button>
+                <button  type="button" class="btn btn-outline-danger m-1  btn-sm"
+                  (click)="onDelete(data)"><i class="far fa-trash-alt mr-1"></i>刪除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ngx-pagination [(CollectionSize)]="totalRecords" [(Page)]="pageIndex" [(PageSize)]="pageSize"
+        (PageChange)="getList()">
+      </ngx-pagination>
+
+
+    </div>
+
+  </nb-card-body>
+</nb-card>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="height: 100%; overflow: auto; max-width: 800px; " class="mr-md-5 ml-md-5">
+    <nb-card-header>
+      <span *ngIf="isNew===true">新增</span>
+      <span *ngIf="isNew===false">編輯</span>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="row  p-2">
+        <div class="col-12 col-md-12">
+
+          <div class="row">
+            <div class="form-group row col-12">
+  <label for="cId" class=" col-md-4 col-form-label">Key</label>
+  <div class="col-md-8">
+    <input type="number" nbInput id="cId" name="cId" placeholder="Key" [(ngModel)]="sample.cId"
+       nbTooltipTrigger="focus" nbTooltip="請輸入Key" nbTooltipPlacement="right">
+  </div>
+</div>
+<div class="form-group row col-12">
+  <label for="cTitle" class=" col-md-4 col-form-label">文字框範例</label>
+  <div class="col-md-8">
+    <input type="text" nbInput id="cTitle" name="cTitle" placeholder="文字框範例" [(ngModel)]="sample.cTitle"
+       nbTooltipTrigger="focus" nbTooltip="請輸入文字框範例" nbTooltipPlacement="right">
+  </div>
+</div>
+<div class="form-group row col-12">
+  <label for="cDescription" class=" col-md-4 col-form-label">必填範例</label>
+  <div class="col-md-8">
+    <input type="text" nbInput id="cDescription" name="cDescription" placeholder="必填範例" [(ngModel)]="sample.cDescription"
+       nbTooltipTrigger="focus" nbTooltip="請輸入必填範例" nbTooltipPlacement="right">
+  </div>
+</div>
+<div class="form-group row col-12">
+  <label for="cQueryBox" class=" col-md-4 col-form-label">查詢範例</label>
+  <div class="col-md-8">
+    <input type="text" nbInput id="cQueryBox" name="cQueryBox" placeholder="查詢範例" [(ngModel)]="sample.cQueryBox"
+       nbTooltipTrigger="focus" nbTooltip="請輸入查詢範例" nbTooltipPlacement="right">
+  </div>
+</div><div class="form-group row col-12">
+  <label for="cType" class="col-md-4 col-form-label">下拉範例</label>
+  <div class="col-md-8">
+      <nb-select placeholder="請選擇" id="cType" name="下拉範例" [(selected)]="sample.cType">
+          <nb-option langg *ngFor="let cType of cTypeOptions" [value]="cType.value">
+              {{cType.text}}
+          </nb-option>
+      </nb-select>
+  </div>
+</div>
+<div class="form-group row col-12">
+  <label for="cType2" class="col-md-4 col-form-label">下拉範例2</label>
+  <div class="col-md-8">
+      <nb-select placeholder="請選擇" id="cType2" name="下拉範例2" [(selected)]="sample.cType2">
+          <nb-option langg *ngFor="let cType2 of cType2Options" [value]="cType2.value">
+              {{cType2.text}}
+          </nb-option>
+      </nb-select>
+  </div>
+</div><div class="form-group row col-12">
+  <label for="cStartDate" class="col-md-4 col-form-label">日期範例</label>
+  <div class="col-md-8">
+    <input nbInput placeholder="日期範例" [nbDatepicker]="cStartDate" class="mr-2" [(ngModel)]="sample.cStartDate">
+    <nb-datepicker format="yyyy-MM-dd" #cStartDate></nb-datepicker>
+  </div>
+</div>
+          </div>
+
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-success mr-2" (click)="save(ref)">確定</button>
+          <button class="btn btn-danger mr-2" (click)="ref.close()">取消</button>
+
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

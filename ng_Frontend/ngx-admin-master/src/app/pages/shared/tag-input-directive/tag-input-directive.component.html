@@ -1,0 +1,11 @@
+<nb-tag-list (tagRemove)="onTagRemove($event)">
+  <nb-tag *ngFor="let tag of TagItems" [text]="tag" removable></nb-tag>
+  <input type="text" nbTagInput #autoInput (tagAdd)="onTagAdd($event)" fullWidth (input)="onAutocompleteChange()"
+    [nbAutocomplete]="auto" [(ngModel)]="tagValue" (focusout)="onTagAddByFocus()">
+</nb-tag-list>
+
+<nb-autocomplete #auto (selectedChange)="onAutocompleteSelectionChange($event)">
+  <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+    {{ option }}
+  </nb-option>
+</nb-autocomplete>

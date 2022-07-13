@@ -1,0 +1,65 @@
+<nb-card accent="success">
+  <nb-card-header>
+    <ngx-breadcrumb></ngx-breadcrumb>
+  </nb-card-header>
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+      <div class="row">
+        <div class="form-group col-12 col-md-6">
+          <label for="keyWord" class="label mr-2">日期</label>
+
+          <input nbInput placeholder="起日" [nbDatepicker]="formcontrol" class="mr-2" [(ngModel)]="request.DateStart">
+          <nb-datepicker #formcontrol></nb-datepicker>
+          <label class="label mr-2">~</label>
+          <input nbInput placeholder="迄日" [nbDatepicker]="ngmodel" [(ngModel)]="request.DateEnd">
+          <nb-datepicker #ngmodel></nb-datepicker>
+
+        </div>
+        <div class="form-group col-12 col-md-4">
+          <label for="keyWord" class="label mr-2">操作功能</label>
+          <nb-select id="FunctionId" name="FunctionId" [(selected)]="request.FunctionId">
+            <nb-option [value]="-1">全部</nb-option>
+            <nb-option langg *ngFor="let fun of functions" [value]="fun.Id"> {{fun.Name}}</nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group col-12 col-md-2 text-right">
+          <button class="btn btn-info mr-2" (click)="getUserLog()"><i class="fas fa-search mr-1"></i>查詢</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped border " style="min-width: 800px; background-color:#f3f3f3;">
+          <thead>
+            <tr style="background-color: #27ae60;" class="d-flex text-white">
+              <th scope="col" class="col-1">序號</th>
+              <th scope="col" class="col-3">使用者帳號</th>
+              <th scope="col" class="col-2">使用者姓名</th>
+              <th scope="col" class="col-2">紀錄時間</th>
+              <th scope="col" class="col-2">操作功能</th>
+              <th scope="col" class="col-2">登入IP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of userLogs" class="d-flex">
+              <td class="col-1">{{ data.CId }}</td>
+              <td class="col-3">{{ data.CAccount }}</td>
+              <td class="col-2">{{ data.CName }}</td>
+              <td class="col-2">{{ data.DateCreate | localDate: 'yyyy-MM-DD HH:mm:ss' }}</td>
+              <td class="col-2">{{ data.FunctionName }}</td>
+              <td class="col-2">{{ data.Ip }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <ngx-pagination [(CollectionSize)]="totalRecords" [(Page)]="pageIndex" [(PageSize)]="pageSize"
+        (PageChange)="getUserLog()">
+      </ngx-pagination>
+
+    </div>
+  </nb-card-body>
+</nb-card>

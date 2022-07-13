@@ -1,0 +1,150 @@
+<nb-card accent="success">
+  <nb-card-header>
+    <ngx-breadcrumb></ngx-breadcrumb>
+  </nb-card-header>
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+      <div class="row">
+        <div class="form-group col-12 col-md-4">
+          <label for="keyWord" class="label mr-2">關鍵字</label>
+          <input type="text" nbInput id="keyWord" name="keyWord" placeholder="關鍵字" [(ngModel)]="request.CUserName">
+        </div>
+        <div class="form-group col-12 col-md-3">
+          <label for="status" class="label mr-2">狀態</label>
+          <nb-select [(selected)]="request.CStatus">
+            <nb-option [value]="-1">全部</nb-option>
+            <nb-option [value]="1">啟用</nb-option>
+            <nb-option [value]="0">停用</nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group col-12 col-md-5 text-right">
+          <button class="btn btn-info mr-2" (click)="getList()"><i class="fas fa-search mr-1"></i>查詢</button>
+          <button class="btn btn-success mr-2" (click)="add(dialog)" *ngIf="isCreate"><i
+              class="fas fa-plus mr-1"></i>新增使用者</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-body class="bg-white">
+    <div class="col-12">
+
+      <div class="table-responsive">
+        <table class="table table-striped border " style="min-width: 800px; background-color:#f3f3f3;">
+          <thead>
+            <tr style="background-color: #27ae60;" class="d-flex text-white">
+              <th scope="col" class="col-1">序號</th>
+              <th scope="col" class="col-3">使用者帳號</th>
+              <th scope="col" class="col-2">使用者名稱</th>
+              <th scope="col" class="col-3">使用者權限</th>
+              <th scope="col" class="col-1">狀態</th>
+              <th scope="col" class="col-2">操作功能</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of userList" class="d-flex">
+              <td class="col-1">{{ data.CUserId }}</td>
+              <td class="col-3">{{ data.CAccount }}</td>
+              <td class="col-2">{{ data.CName }}</td>
+              <td class="col-3">{{ data.CUserGroupName }}</td>
+              <td class="col-1">{{ data.CStatus | getStatusName }}</td>
+              <td class="col-2">
+                <button *ngIf="isUpdate" type="button" class="btn btn-outline-success m-1  btn-sm"
+                  (click)="onEdit(data,dialog)"><i class="fas fa-edit mr-1"></i>編輯</button>
+                <button *ngIf="isDelete" type="button" class="btn btn-outline-danger m-1  btn-sm"
+                  (click)="onDelete(data)"><i class="far fa-trash-alt mr-1"></i>刪除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ngx-pagination [(CollectionSize)]="totalRecords" [(Page)]="pageIndex" [(PageSize)]="pageSize"
+        (PageChange)="getList()">
+      </ngx-pagination>
+
+
+    </div>
+
+  </nb-card-body>
+</nb-card>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="height: 100%; overflow: auto; max-width: 800px; " class="mr-md-5 ml-md-5">
+    <nb-card-header>
+      <span *ngIf="isNew===true">新增使用者</span>
+      <span *ngIf="isNew===false">編輯使用者</span>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="row  p-2">
+        <div class="col-12 col-md-12">
+
+          <div class="row">
+            <div class="form-group row col-12">
+              <label for="CAccount" class=" col-md-4 col-form-label">帳號帳號</label>
+              <div class="col-md-8">
+                <input type="text" nbInput id="CAccount" name="CAccount" placeholder="帳號" [(ngModel)]="user.CAccount"
+                  [disabled]="!isNew">
+              </div>
+            </div>
+            <div class="form-group row col-12">
+              <label for="CName" class="col-md-4 col-form-label">名稱</label>
+              <div class="col-md-8">
+                <input type="text" nbInput id="CName" name="CName" placeholder="名稱" [(ngModel)]="user.CName">
+              </div>
+            </div>
+            <div class="form-group row col-12" *ngIf="!isNew">
+              <label for="OldPassword" class="col-md-4 col-form-label">舊密碼</label>
+              <div class="col-md-8">
+                <input type="Password" nbInput id="OldPassword" name="OldPassword" [(ngModel)]="user.OldPassword">
+              </div>
+            </div>
+            <div class="form-group row col-12">
+              <label for="Password" class="col-md-4 col-form-label">密碼</label>
+              <div class="col-md-8">
+                <input type="Password" nbInput id="Password" name="Password" [(ngModel)]="user.Password">
+              </div>
+            </div>
+            <div class="form-group row col-12">
+              <label for="CfmPassword" class="col-md-4 col-form-label">確認密碼</label>
+              <div class="col-md-8">
+                <input type="Password" nbInput id="CfmPassword" name="CfmPassword" [(ngModel)]="user.CfmPassword">
+              </div>
+            </div>
+            <div class="form-group row col-12">
+              <label for="userroles" class="col-md-4 col-form-label">權限</label>
+              <div class="col-md-8">
+                <nb-select multiple placeholder="請選擇" id="CUserGroupId" name="CUserGroupId"
+                  [(selected)]="user.ListUserGroup">
+                  <nb-option langg *ngFor="let group of userGroups" [value]="group.CId"> {{group.CName}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row col-12">
+              <label for="userstatus" class="col-md-4 col-form-label">狀態</label>
+              <div class="col-md-8">
+                <nb-select placeholder="請選擇" id="CStatus" name="CStatus" [(selected)]="user.CStatus">
+                  <nb-option langg *ngFor="let status of statusOptions" [value]="status.value"> {{status.label}}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-success mr-2" (click)="save(ref)">確定</button>
+          <button class="btn btn-danger mr-2" (click)="ref.close()">取消</button>
+
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

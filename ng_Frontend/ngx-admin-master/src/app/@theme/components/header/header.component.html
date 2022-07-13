@@ -1,0 +1,25 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()">Admin</a>
+  </div>
+
+  <nb-select (selectedChange)="changeBuId($event)" status="primary" [(selected)]="selectBuId" *ngIf="buId===ownerBuId">
+    <nb-option *ngFor="let option of businessUnits" [value]="option.CId"> {{ option.CName }}</nb-option>
+  </nb-select>
+
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+      <nb-user [onlyPicture]="userPictureOnly" [name]="userName" >
+      </nb-user>
+    </nb-action>
+    <nb-action>
+      <button nbButton status="danger" (click)="logOut()">登出</button>
+    </nb-action>
+  </nb-actions>
+</div>
